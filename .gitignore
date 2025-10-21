@@ -1,0 +1,70 @@
+# -------------------
+# Python
+# -------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+build/
+dist/
+.eggs/
+*.manifest
+*.spec
+
+# -------------------
+# Virtual Environments
+# -------------------
+.venv/
+venv/
+env/
+ENV/
+.venv.bak/
+.env
+
+# -------------------
+# Django
+# -------------------
+*.log
+db.sqlite3
+media/
+staticfiles/
+static/css/tailwindcss.exe
+static/css/*.map
+static/css/*.min.css
+
+# -------------------
+# Tailwind / Node
+# -------------------
+node_modules/
+package-lock.json
+yarn.lock
+npm-debug.log*
+dist/
+.cache/
+
+# -------------------
+# IDE / Editor
+# -------------------
+.idea/
+.vscode/
+*.swp
+
+# -------------------
+# OS files
+# -------------------
+.DS_Store
+Thumbs.db
+
+# -------------------
+# Jupyter / Misc
+# -------------------
+.ipynb_checkpoints
+*.ipynb
+
+# -------------------
+# Custom
+# -------------------
+do_not_commit
