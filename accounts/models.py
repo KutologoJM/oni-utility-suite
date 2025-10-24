@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group
 from django.db.models import *
 
 
@@ -6,31 +6,22 @@ from django.db.models import *
 
 
 class CustomUser(AbstractUser):
-    class Role(TextChoices):
-        CUSTOMER = 'CUSTOMER', 'Customer'
-        MANAGER = 'MANAGER', 'Manager'
-        ADMIN = 'ADMIN', 'Admin'
-
-    role = CharField(
-        max_length=20,
-        choices=Role.choices,
-        default=Role.CUSTOMER,
-    )
 
     @property
     def is_customer(self):
-        return self.role == self.Role.CUSTOMER
+        return self.groups.filter(name='Customer').exists()
 
     @property
     def is_manager(self):
-        return self.role == self.Role.MANAGER
+        return self.groups.filter(name='Manager').exists()
 
     @property
     def is_admin(self):
-        return self.role == self.Role.ADMIN
+        return self.groups.filter(name='Admin').exists()
 
     def __str__(self):
-        return f"{self.username} ({self.role})"
+        primary_group = self.groups.first()
+        return f"{self.username} ({primary_group.name if primary_group else 'No Group'})"
 
 
 class BaseProfile(Model):

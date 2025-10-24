@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Site{% endblock %}</title>
+    {% load static %}
+    <link href="{% static 'css/output.css' %}" rel="stylesheet" type="text/css"/>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+
+<!-- Navbar -->
+<div class="navbar bg-base-100 shadow-sm">
+    <div class="flex-1">
+        {% if user.is_authenticated %}
+            <h1 class="text-xl font-semibold text-cyan-400">Hello, {{ user.username }}!</h1>
+        {% else %}
+            <h1 class="text-xl font-semibold text-cyan-400">Hello, {{ user }}!</h1>
+        {% endif %}
+    </div>
+    <div class="flex gap-2">
+        <div class="dropdown dropdown-end">
+            <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                <div class="w-10 rounded-full">
+                    <img
+                            alt="Tailwind CSS Navbar component"
+                            src="{% static 'images/profile_placeholder.svg' %}"/>
+                </div>
+            </div>
+            <ul
+                    tabindex="-1"
+                    class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                <li>
+                    <a class="justify-between" href="{% url 'profile' %}">
+                        Profile
+                        <span class="badge">W.I.P</span>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        Settings
+                        <span class="badge">W.I.P</span>
+                    </a>
+                </li>
+                <li>
+
+                    {% if user.is_authenticated %}
+                        <form action="{% url 'logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit"
+                                    class="bg-red-500">
+                                Logout
+                            </button>
+                        </form>        {% else %}
+                        <a class="justify-between" href="{% url 'login' %}">
+                            Login
+                            <span class="badge">W.I.P</span>
+                        </a>        {% endif %}
+
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<!-- Main Content -->
+<main class="flex-grow flex items-center justify-center px-6">
+    {% block content %}
+    {% endblock %}
+</main>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-gray-500 py-4 text-center">
+    <p> {{ now|date:"Y" }} ONI Utility Suite by KutologoJM — All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
