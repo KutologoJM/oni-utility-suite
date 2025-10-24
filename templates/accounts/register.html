@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Register</title>
+    <meta charset="UTF-8">
+    {% load static %}
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <link href="{% static 'css/output.css' %}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <div class="flex min-h-full flex-col  justify-center px-6 py-12 lg:px-8">
+      <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=cyan&shade=500" alt="Your Company"
+             class="mx-auto h-10 w-auto"/>
+        <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">Sign up for an account</h2>
+      </div>
+
+      <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <form action="{% url 'register' %}" method="POST" class="space-y-6">
+            {% csrf_token %}
+          <div>
+            <label for="username" class="block text-sm/6 font-medium text-gray-100">Username</label>
+            <div class="mt-2">
+              <input name="username"
+                     id="username"
+                      type="text"
+                     class="input validator block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2  sm:text-sm/6"
+                     required placeholder="Username"
+                     pattern="[A-Za-z][A-Za-z0-9\-]*" minlength="3" maxlength="30"
+                     title="Only letters, numbers or dash"/>
+
+              <p class="validator-hint hidden">
+                Must be 3 to 30 characters
+                <br/>containing only letters, numbers or dash
+              </p>
+            </div>
+          </div>
+
+         <div>
+  <label for="password1" class="block text-sm/6 font-medium text-gray-100">Password</label>
+  <div class="mt-2">
+    <input name="password1"
+           id="password1"
+           type="password"
+           class="input validator block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 sm:text-sm/6"
+           required placeholder="Enter password" minlength="8"
+           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+           title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"/>
+
+    <p class="validator-hint hidden">
+      Must be more than 8 characters, including
+      <br/>At least one number
+      <br/>At least one lowercase letter
+      <br/>At least one uppercase letter
+    </p>
+  </div>
+</div>
+
+<div>
+  <label for="password2" class="block text-sm/6 font-medium text-gray-100">Confirm Password</label>
+  <div class="mt-2">
+    <input name="password2"
+           id="password2"
+           type="password"
+           class="input validator block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 sm:text-sm/6"
+           required placeholder="Confirm password" minlength="8"
+           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+           title="Must match the password above"/>
+  </div>
+</div>
+
+
+          <div>
+            <button type="submit"
+                    class="flex w-full justify-center rounded-md bg-cyan-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-cyan-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500">
+              Sign up
+            </button>
+          </div>
+        </form>
+
+        <p class="mt-10 text-center text-sm/6 text-gray-400">
+          Already member?
+          <a href="{% url 'login' %}" class="font-semibold text-cyan-400 hover:text-cyan-300">Click here to login</a>
+        </p>
+      </div>
+    </div>
+
+
+</body>
+</html>

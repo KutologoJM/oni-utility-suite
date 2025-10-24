@@ -1,0 +1,12 @@
+[
+  {
+    "model": "accounts.customuser",
+    "fields": {
+      "username": "manager_Abe",
+      "password": "!",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false
+    }
+  }
+]
