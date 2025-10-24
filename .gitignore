@@ -68,3 +68,10 @@ Thumbs.db
 # Custom
 # -------------------
 do_not_commit
+do_not_commit.html
+START.bat
+
+# -------------------
+# Temporary
+# -------------------
+docs
