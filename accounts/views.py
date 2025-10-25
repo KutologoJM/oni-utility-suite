@@ -3,6 +3,10 @@ from .forms import *
 from django.views.generic import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from django.contrib.auth.models import Group
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.viewsets import ModelViewSet
+from .serializers import *
 
 User = get_user_model()
 
@@ -59,3 +63,24 @@ class CustomPasswordChangeView(PasswordChangeView):
 class CustomPasswordChangeDoneView(PasswordChangeDoneView):
     template_name = "accounts/password_change_done.html"
     extra_context = {"current_app": "accounts"}
+
+
+# ----------------------------------------------------
+class UserViewSet(ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+
+    queryset = User.objects.all().order_by("-date_joined")
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
+
+
+class GroupViewSet(ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+
+    queryset = Group.objects.all().order_by("name")
+    serializer_class = GroupSerializer
+    permission_classes = [IsAuthenticated]
