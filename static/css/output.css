@@ -902,10 +902,6 @@
   .min-h-screen {
     min-height: 100vh;
   }
-  .btn-wide {
-    width: 100%;
-    max-width: calc(0.25rem * 64);
-  }
   .w-10 {
     width: calc(var(--spacing) * 10);
   }
@@ -1185,11 +1181,6 @@
     @supports (color: color-mix(in lab, red, red)) {
       outline-color: color-mix(in oklab, var(--color-white) 10%, transparent);
     }
-  }
-  .btn-sm {
-    --fontsize: 0.75rem;
-    --btn-p: 0.75rem;
-    --size: calc(var(--size-field, 0.25rem) * 8);
   }
   .btn-primary {
     --btn-color: var(--color-primary);
