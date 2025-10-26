@@ -51,7 +51,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "accounts.apps.AccountsConfig",
+    "recipe_api.apps.RecipeApiConfig",
     #
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
@@ -130,7 +132,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # noqa
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]

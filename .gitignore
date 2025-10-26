@@ -75,3 +75,5 @@ START.bat
 # Temporary
 # -------------------
 docs
+accounts/signals.py
+recipe_api/management
