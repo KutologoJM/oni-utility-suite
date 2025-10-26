@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
+    <title>Recipe Showcase</title>
+    <style>
+        .jersey-15-regular {
+            font-family: "Jersey 15", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body class="jersey-15-regular p-6 bg-gray-950 text-2xl">
+<div class="min-h-screen flex items-center justify-center p-4">
+    <div id="Food card" class="grid grid-cols-[repeat(auto-fit,minmax(500px,1fr))] gap-2">
+        {% for recipe in recipes %}
+            <div class="bg-white text-center flex flex-col rounded-xl">
+                <!-- Header -->
+                <div id="Name Header"
+                     class="bg-[#0060AF] text-white h-[68px] flex items-center justify-center m-1 rounded-xl">
+                    <h1 class="text-center text-5xl">
+                        {{ recipe.recipe_name }}
+                    </h1>
+                </div>
+                <!-- Description & Image -->
+                <div id="Description & Image" class=" text-black">
+                    <img class="m-auto" id="Product image"  src="{{ recipe.recipe_image_url }}" alt="A picture of {{ recipe.recipe_name }}"/>
+                    <p class="text-3xl m-2">
+                        {{ recipe.recipe_description }}
+                    </p>
+                </div>
+                <div id="Ingredient_container"
+                     class="text-black bg-[#003FAC] flex flex-nowrap justify-between items-stretch overflow-hidden m-1 rounded-xl">
+
+                    {% for ingredient in recipe.ingredients.all %}
+                        <div class="bg-white flex flex-col items-center justify-between flex-[1_1_0] min-w-0 m-2 p-2 rounded-xl">
+                            <div class="flex-1 flex items-center justify-center h-[70px] min-w-0 overflow-hidden">
+                                <img class="max-h-full max-w-full object-contain"
+                                     src="{{ ingredient.ingredient_image_url }}" alt="A picture of {{ ingredient.ingredient_name }}">
+                            </div>
+                            <h5 class="text-xl text-center break-words">
+                                {{ ingredient.ingredient_name }}
+                            </h5>
+                        </div>
+                    {% endfor %}
+                </div>
+                <!-- Footer-->
+                <div id="Footer" class="flex text-white gap-2 m-2">
+
+                    <!-- Quality Info -->
+                    <div id="Quality Info"
+                         class="bg-[#0060AF] w-[107px] h-[44px] flex items-center justify-center rounded-4xl">
+                        <p class="text-2xl">
+                            {{ recipe.food_quality.Quality }}
+                        </p>
+                    </div>
+                    <!-- Source Info -->
+                    <div id="Source Info" class="bg-[#0060AF] w-[250px] h-[44px] flex items-center px-2 rounded-4xl">
+                        <img
+                                alt="A picture of {{ ingredient.ingredient_source_name }}"
+                                id="Source image"
+                                class="w-[55px] h-[44px] object-contain"
+                                src="{{ recipe.sources.source_image_url }}"
+                        />
+                        <p id="Source Name" class="ml-2 p-2 text-2xl">
+                            {{ recipe.sources. }}
+                        </p>
+                    </div>
+                    <!-- DLC Info -->
+                    <div id="DLC Info"
+                         class="bg-[#0060AF] w-[75px] h-[44px] flex items-center justify-center rounded-4xl">
+                        <img
+                                class="w-[55px] h-[44px] object-contain"
+                                alt="{{ recipe.dlc_name }}"
+                                src="{{ recipe.dlc_image_url }}"
+                        />
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>
