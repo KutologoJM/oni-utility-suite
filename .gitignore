@@ -51,6 +51,7 @@ dist/
 .idea/
 .vscode/
 *.swp
+.idea
 
 # -------------------
 # OS files
@@ -77,3 +78,4 @@ START.bat
 docs
 accounts/signals.py
 recipe_api/management
+testing_area

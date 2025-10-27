@@ -9,11 +9,13 @@ from django.views.generic import *
 class IngredientsViewSet(ModelViewSet):
     serializer_class = IngredientsSerializer
     queryset = IngredientsModel.objects.all()
+    lookup_field = "slug"
 
 
 class RecipeViewSet(ModelViewSet):
     serializer_class = RecipeSerializer
     queryset = RecipeModel.objects.all()
+    lookup_field = "slug"
 
 
 class SourcesViewSet(ModelViewSet):
