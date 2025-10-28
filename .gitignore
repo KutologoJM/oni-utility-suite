@@ -79,3 +79,4 @@ docs
 accounts/signals.py
 recipe_api/management
 testing_area
+templating_area
