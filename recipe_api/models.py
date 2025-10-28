@@ -138,6 +138,9 @@ class RecipeSourcesModel(Model):
     class Meta:
         verbose_name = "Recipe Source"
         verbose_name_plural = "Recipe Sources"
+        constraints = [
+            UniqueConstraint(fields=["recipe", "source"], name="unique_recipe_source")
+        ]
 
     def __str__(self):
         return f"{self.source.source_name} for {self.recipe.recipe_name}"
@@ -156,6 +159,11 @@ class IngredientSourcesModel(Model):
     class Meta:
         verbose_name = "Ingredient Source"
         verbose_name_plural = "Ingredient Sources"
+        constraints = [
+            UniqueConstraint(
+                fields=["ingredients", "source"], name="unique_ingredient_source"
+            )
+        ]
 
     def __str__(self):
         return f"{self.source.source_name} for {self.ingredients.ingredient_name}"

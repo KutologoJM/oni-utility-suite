@@ -29,7 +29,8 @@
                 </div>
                 <!-- Description & Image -->
                 <div id="Description & Image" class=" text-black">
-                    <img class="m-auto" id="Product image"  src="{{ recipe.recipe_image_url }}" alt="A picture of {{ recipe.recipe_name }}"/>
+                    <img class="m-auto" id="Product image" src="{{ recipe.recipe_image_url }}"
+                         alt="A picture of {{ recipe.recipe_name }}"/>
                     <p class="text-3xl m-2">
                         {{ recipe.recipe_description }}
                     </p>
@@ -41,7 +42,8 @@
                         <div class="bg-white flex flex-col items-center justify-between flex-[1_1_0] min-w-0 m-2 p-2 rounded-xl">
                             <div class="flex-1 flex items-center justify-center h-[70px] min-w-0 overflow-hidden">
                                 <img class="max-h-full max-w-full object-contain"
-                                     src="{{ ingredient.ingredient_image_url }}" alt="A picture of {{ ingredient.ingredient_name }}">
+                                     src="{{ ingredient.ingredient_image_url }}"
+                                     alt="A picture of {{ ingredient.ingredient_name }}">
                             </div>
                             <h5 class="text-xl text-center break-words">
                                 {{ ingredient.ingredient_name }}
@@ -60,17 +62,20 @@
                         </p>
                     </div>
                     <!-- Source Info -->
-                    <div id="Source Info" class="bg-[#0060AF] w-[250px] h-[44px] flex items-center px-2 rounded-4xl">
-                        <img
-                                alt="A picture of {{ ingredient.ingredient_source_name }}"
-                                id="Source image"
-                                class="w-[55px] h-[44px] object-contain"
-                                src="{{ recipe.sources.source_image_url }}"
-                        />
-                        <p id="Source Name" class="ml-2 p-2 text-2xl">
-                            {{ recipe.sources. }}
-                        </p>
-                    </div>
+                    {% for source in recipe.sources.all %}
+                        <div id="Source Info"
+                             class="bg-[#0060AF] w-[250px] h-[44px] flex items-center px-2 rounded-4xl">
+                            <img
+                                    alt="A picture of {{ source.source_name }}"
+                                    id="Source image"
+                                    class="w-[55px] h-[44px] object-contain"
+                                    src="{{ source.source_image_url }}"
+                            />
+                            <p id="Source Name" class="ml-2 p-2 text-2xl">
+                                {{ source.source_name }}
+                            </p>
+                        </div>
+                    {% endfor %}
                     <!-- DLC Info -->
                     <div id="DLC Info"
                          class="bg-[#0060AF] w-[75px] h-[44px] flex items-center justify-center rounded-4xl">

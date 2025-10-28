@@ -54,10 +54,17 @@ INSTALLED_APPS = [
     "recipe_api.apps.RecipeApiConfig",
     #
     "rest_framework",
+    "django_filters",
+    "corsheaders",
+    "drf_spectacular",
+    "django_extensions",
+    "templating_area.apps.TemplatingAreaConfig",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -137,6 +144,10 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+# Whitenoise config
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
@@ -144,3 +155,38 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # New Default User
 AUTH_USER_MODEL = "accounts.CustomUser"
+
+# Cors Settings
+
+CORS_ALLOWED_ORIGINS = [
+    origin.strip()
+    for origin in os.getenv("CORS_ALLOWED_ORIGINS", "").split(",")
+    if origin.strip()
+]
+CORS_ALLOW_CREDENTIALS = True
+
+# Spectacular Settings
+SPECTACULAR_SETTINGS = {
+    "TITLE": "oni-recipe-api",
+    "DESCRIPTION": "API documentation for my oni recipe api.",
+    "VERSION": "1.0.0",
+    # Optional: TBD authentication support
+    "SERVE_INCLUDE_SCHEMA": False,
+}
+
+# Session and CSRF
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = "None"
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = "None"
+
+# Rest Framework
+REST_FRAMEWORK = {
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
+        "rest_framework.filters.SearchFilter",
+        "rest_framework.filters.OrderingFilter",
+    ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+}
