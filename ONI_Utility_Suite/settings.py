@@ -38,8 +38,7 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Site admins who receive mail_admins() notifications
 ADMINS = [
-    ("kutologojm Admin", "kutologojm@internal.com"),
-    ("Site Owner", "owner@internal.com"),
+    ("kutologojm Admin", "KutologoJM@kutologo.bio"),
 ]
 
 # Application definition
