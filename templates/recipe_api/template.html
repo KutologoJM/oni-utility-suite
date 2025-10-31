@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" class=""> <!-- remove 'dark' for light mode -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frost Burger Recipe</title>
+
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Optional font mimic */
+    @import url('https://fonts.googleapis.com/css2?family=Jersey+15&display=swap');
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-950 text-gray-800 dark:text-gray-100">
+
+  <!-- Header -->
+  <header class="bg-white dark:bg-gray-900 border-b-2 border-[#0060af]/20 dark:border-[#60a5fa]/20 sticky top-0 z-10 backdrop-blur-sm bg-white/90 dark:bg-gray-900/90">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <button class="flex items-center gap-2 text-[#0060af] dark:text-[#60a5fa] hover:gap-3 transition-all">
+        <span>←</span>
+        <span class="font-['Jersey_15',sans-serif]">Back to Recipes</span>
+      </button>
+
+      <div class="flex items-center gap-4">
+        <button class="p-2 hover:bg-[#0060af]/10 dark:hover:bg-[#60a5fa]/10 rounded-full transition-colors text-[#0060af] dark:text-[#60a5fa]">♥</button>
+        <button class="p-2 hover:bg-[#0060af]/10 dark:hover:bg-[#60a5fa]/10 rounded-full transition-colors text-[#0060af] dark:text-[#60a5fa]">⤴</button>
+        <button class="p-2 hover:bg-[#0060af]/10 dark:hover:bg-[#60a5fa]/10 rounded-full transition-colors text-[#0060af] dark:text-[#60a5fa]">🖨</button>
+      </div>
+    </div>
+      <input
+        type="checkbox"
+        value="dark"
+        class="toggle theme-controller col-span-2 col-start-1 row-start-1 border-sky-400 bg-amber-300 [--tglbg:var(--color-sky-500)] checked:border-blue-800 checked:bg-blue-300 checked:[--tglbg:var(--color-blue-900)]"/>
+
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm border-b border-[#0060af]/10 dark:border-[#60a5fa]/10">
+    <div class="max-w-6xl mx-auto px-4 py-3 text-sm">
+      <nav class="flex items-center space-x-2 text-[#0060af] dark:text-[#60a5fa]">
+        <a href="#" class="flex items-center gap-1">🏠 Home</a>
+        <span>/</span>
+        <a href="#">Burgers</a>
+        <span>/</span>
+        <a href="#">Cold Recipes</a>
+        <span>/</span>
+        <span class="text-gray-700 dark:text-gray-300">Frost Burger</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 py-8">
+
+    <!-- Recipe Card Hero -->
+    <div class="mb-12 flex justify-center">
+      <div class="w-full max-w-md">
+        <div class="relative h-[400px] bg-gray-200 dark:bg-gray-800 rounded-xl flex items-center justify-center">
+          <span class="text-gray-500 dark:text-gray-400">[ RecipeCard Placeholder ]</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recipe Stats -->
+    <section class="mb-12 text-center">
+      <h2 class="text-2xl font-semibold mb-2 text-[#0060af] dark:text-[#60a5fa]">Recipe Stats</h2>
+      <p>Prep Time: 20 min | Cook Time: 10 min | Servings: 2</p>
+    </section>
+
+    <!-- Image Carousel -->
+    <section class="mb-12">
+      <div class="h-64 bg-gray-200 dark:bg-gray-800 rounded-xl flex items-center justify-center">
+        <span class="text-gray-500 dark:text-gray-400">[ Image Carousel ]</span>
+      </div>
+    </section>
+
+    <!-- Ingredients and Equipment -->
+    <section class="grid md:grid-cols-2 gap-8 mb-12">
+      <div class="p-6 bg-white dark:bg-gray-900 rounded-xl shadow">
+        <h3 class="text-xl font-semibold text-[#0060af] dark:text-[#60a5fa] mb-3">Ingredients</h3>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>Brioche buns</li>
+          <li>Frozen beef patties</li>
+          <li>Blue cheese sauce</li>
+        </ul>
+      </div>
+      <div class="p-6 bg-white dark:bg-gray-900 rounded-xl shadow">
+        <h3 class="text-xl font-semibold text-[#0060af] dark:text-[#60a5fa] mb-3">Equipment</h3>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>Gas range</li>
+          <li>Mixing bowl</li>
+          <li>Spatula</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Cooking Steps & Tips -->
+    <section class="grid lg:grid-cols-3 gap-8 mb-12">
+      <div class="lg:col-span-2 p-6 bg-white dark:bg-gray-900 rounded-xl shadow">
+        <h3 class="text-xl font-semibold text-[#0060af] dark:text-[#60a5fa] mb-3">Cooking Steps</h3>
+        <ol class="list-decimal pl-6 space-y-1">
+          <li>Preheat your gas range.</li>
+          <li>Cook patties for 5 minutes on each side.</li>
+          <li>Let them chill before serving cold.</li>
+        </ol>
+      </div>
+      <div class="p-6 bg-white dark:bg-gray-900 rounded-xl shadow">
+        <h3 class="text-xl font-semibold text-[#0060af] dark:text-[#60a5fa] mb-3">Chef’s Tips</h3>
+        <p>Serve on chilled buns for that frost-bite crunch!</p>
+      </div>
+    </section>
+
+    <!-- Nutrition Info -->
+    <section class="mb-12 text-center">
+      <h3 class="text-xl font-semibold text-[#0060af] dark:text-[#60a5fa] mb-2">Nutrition Info</h3>
+      <p>Calories: 420 | Protein: 28g | Fat: 22g | Carbs: 25g</p>
+    </section>
+
+    <!-- Important Notes -->
+    <section class="bg-yellow-50 dark:bg-yellow-900/20 border-2 border-yellow-200 dark:border-yellow-700 rounded-[10px] p-6 mb-12">
+      <h3 class="font-['Jersey_15',sans-serif] text-yellow-900 dark:text-yellow-200 mb-3">Important Notes</h3>
+      <p class="text-yellow-800 dark:text-yellow-300">
+        The Frost Burger is a unique culinary creation that requires precise temperature control.
+        Make sure to use a gas range for optimal results, and remember — this is the only burger designed to be served cold!
+      </p>
+    </section>
+
+    <!-- Related Recipes -->
+    <section class="text-center mb-12">
+      <h3 class="text-xl font-semibold text-[#0060af] dark:text-[#60a5fa] mb-3">Related Recipes</h3>
+      <p>Check out more frosty delights soon!</p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#003fac] dark:bg-gray-950 border-t dark:border-[#60a5fa]/20 mt-16 py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <p class="font-['Jersey_15',sans-serif] text-white">
+        Created with the finest frozen ingredients
+      </p>
+      <p class="text-white/70 dark:text-gray-400 mt-2">
+        © 2025 Frost Burger Recipe Collection
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

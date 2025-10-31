@@ -58,7 +58,6 @@ INSTALLED_APPS = [
     "corsheaders",
     "drf_spectacular",
     "django_extensions",
-    "templating_area.apps.TemplatingAreaConfig",
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" data-theme="lunar">
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static 'css/output.css' %}" rel="stylesheet" type="text/css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
+    <title>Recipe Showcase</title>
+    <style>
+        .jersey-15-regular {
+            font-family: "Jersey 15", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+<header id="navbar" class="border ">
+    <div class="navbar bg-base-100 shadow-sm">
+        <div class="flex-1">
+
+            <a class="btn btn-ghost text-xl">daisyUI</a>
+
+        </div>
+
+        <div class="flex-none">
+
+            <button class="btn btn-circle hover:btn-primary">
+                ♥
+            </button>
+            <button class="btn btn-circle hover:btn-primary">
+                ⤴
+            </button>
+            <button class="btn btn-circle hover:btn-primary">
+                🖨
+            </button>
+            <div class="join">
+                <input
+                        type="radio"
+                        name="theme-buttons"
+                        class="btn theme-controller join-item"
+                        aria-label="lunar"
+                        value="lunar"/>
+                <input
+                        type="radio"
+                        name="theme-buttons"
+                        class="btn theme-controller join-item"
+                        aria-label="solar"
+                        value="solar"/>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="breadcrumbs" class="p-2">
+    <div class=" breadcrumbs p-2">
+        <ul>
+            <li><a>
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        class="h-4 w-4 stroke-current">
+                    <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                </svg>
+                Root
+            </a></li>
+            <li><a>Recipes</a></li>
+            <li>{{ recipe.recipe_name }}</li>
+        </ul>
+    </div>
+</section>
+
+<section id="ingredient_stats">
+    <h2 class="jersey-15-regular text-center text-3xl">
+        Cooking Stats
+    </h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 m-2 p-2">
+
+        <div class="rounded-[10px] p-6 border-2 bg-base-300 flex flex-col items-center gap-2">
+            <p>
+                {icon}
+            </p>
+            <p class="jersey-15-regular">
+                {value}
+            </p>
+            <p class="">
+                {label}
+            </p>
+        </div>
+
+        <div class="rounded-[10px] p-6 border-2 bg-base-300 flex flex-col items-center gap-2">
+            <p>
+                {icon}
+            </p>
+            <p class="jersey-15-regular">
+                {value}
+            </p>
+            <p class="">
+                {label}
+            </p>
+        </div>
+
+        <div class="rounded-[10px] p-6 border-2 bg-base-300 flex flex-col items-center gap-2">
+            <p>
+                {icon}
+            </p>
+            <p class="jersey-15-regular">
+                {value}
+            </p>
+            <p class="">
+                {label}
+            </p>
+        </div>
+
+        <div class="rounded-[10px] p-6 border-2 bg-base-300 flex flex-col items-center gap-2">
+            <p>
+                {icon}
+            </p>
+            <p class="jersey-15-regular">
+                {value}
+            </p>
+            <p class="">
+                {label}
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section id="Image_carousel" class="p-4 text-center">
+    <h2 class="jersey-15-regular text-center text-3xl">
+        Image Gallery
+    </h2>
+
+    <div class="carousel carousel-center bg-base-300 border-2 rounded-box w-1/2 space-x-4 p-4">
+
+        {% for ingredient in recipe.ingredients.all %}
+        <div id="item{{ forloop.counter }}" class="carousel-item w-full">
+            <img
+                    src="{{ ingredient.ingredient_image_url }}"
+                    class="w-full" alt="{{ ingredient.ingredient_name }}"/>
+        </div>
+    {% endfor %}
+    </div>
+    <div class="flex w-full justify-center gap-2 py-2">
+        {% for ingredient in recipe.ingredients.all %}
+         <a href="#item{{ forloop.counter }}" class="btn btn-xs">{{ forloop.counter }}</a>
+        {% endfor %}
+
+    </div>
+
+</section>
+
+<section id="Ingredients" class="p-4">
+    <h2 class="jersey-15-regular text-center text-3xl">
+        Ingredients
+    </h2>
+
+    <div class="bg-base-300 border-2 rounded-box p-4">
+        <div id="ingredients-list" class="space-y-4">
+            <div class="flex items-center justify-between">
+                <h2
+                        style="font-family: 'Jersey_15', sans-serif; color: #0060af;"
+                        class="dark:text-[#60a5fa]"
+                >
+                    Ingredients
+                </h2>
+                <button
+                        id="exportBtn"
+                        style="
+        border: 1px solid #0060af;
+        color: #0060af;
+        padding: 4px 10px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background: transparent;
+        cursor: pointer;
+      "
+                >
+                    🛒 Export List
+                </button>
+            </div>
+
+            <div
+                    class="ingredient-container"
+                    style="
+      background: white;
+      border: 2px solid #0060af;
+      border-radius: 10px;
+      padding: 20px;
+    "
+            >
+                <div id="ingredientItems" class="space-y-4"></div>
+
+                <div id="progressSection"
+                     style="display: none; margin-top: 20px; border-top: 1px solid #ddd; padding-top: 10px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span style="color: gray;">Progress</span>
+                        <span id="progressText" style="color: #0060af; font-family: 'Jersey_15', sans-serif;"></span>
+                    </div>
+                    <div style="height: 8px; background: #eee; border-radius: 4px; overflow: hidden;">
+                        <div id="progressBar"
+                             style="height: 100%; background: #0060af; width: 0%; transition: width 0.3s;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Ingredient data
+            const ingredients = [
+                {id: "1", name: "Frost Buns", amount: "2 pieces", category: "bun"},
+                {id: "2", name: "Barbeque Meat", amount: "150g", category: "protein"},
+                {id: "3", name: "Fresh Lettuce", amount: "4 leaves", category: "vegetables"},
+                {id: "4", name: "Gas Range (for cooking)", amount: "1 unit", category: "other"},
+            ];
+
+            const ingredientItems = document.getElementById("ingredientItems");
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+            const progressSection = document.getElementById("progressSection");
+            const exportBtn = document.getElementById("exportBtn");
+
+            const checkedItems = new Set();
+
+            // Render ingredients
+            ingredients.forEach((ingredient) => {
+                const wrapper = document.createElement("div");
+                wrapper.className =
+                    "flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors";
+                wrapper.style.display = "flex";
+                wrapper.style.alignItems = "center";
+                wrapper.style.gap = "10px";
+                wrapper.style.padding = "10px";
+                wrapper.style.borderRadius = "8px";
+                wrapper.style.cursor = "pointer";
+
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.id = ingredient.id;
+                checkbox.style.accentColor = "#0060af";
+
+                const label = document.createElement("label");
+                label.htmlFor = ingredient.id;
+                label.style.flex = "1";
+                label.style.cursor = "pointer";
+                label.innerHTML = `<span style="font-family: 'Jersey_15', sans-serif;">${ingredient.amount}</span> ${ingredient.name}`;
+
+                checkbox.addEventListener("change", () => {
+                    if (checkbox.checked) {
+                        checkedItems.add(ingredient.id);
+                        label.style.textDecoration = "line-through";
+                        label.style.color = "gray";
+                    } else {
+                        checkedItems.delete(ingredient.id);
+                        label.style.textDecoration = "none";
+                        label.style.color = "black";
+                    }
+                    updateProgress();
+                });
+
+                wrapper.appendChild(checkbox);
+                wrapper.appendChild(label);
+                ingredientItems.appendChild(wrapper);
+            });
+
+            // Update progress bar
+            function updateProgress() {
+                const progress = (checkedItems.size / ingredients.length) * 100;
+                progressBar.style.width = `${progress}%`;
+                progressText.textContent = `${checkedItems.size}/${ingredients.length}`;
+                progressSection.style.display = checkedItems.size > 0 ? "block" : "none";
+            }
+
+            // Export unchecked items to text file
+            exportBtn.addEventListener("click", () => {
+                const unchecked = ingredients.filter((i) => !checkedItems.has(i.id));
+                const listText = unchecked.map((i) => `${i.amount} ${i.name}`).join("\n");
+                const blob = new Blob(
+                    [`Frost Burger Shopping List\n\n${listText}`],
+                    {type: "text/plain"}
+                );
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "frost-burger-shopping-list.txt";
+                a.click();
+                URL.revokeObjectURL(url);
+                alert("Shopping list downloaded!");
+            });
+        </script>
+
+    </div>
+
+</section>
+
+</body>
+</html>

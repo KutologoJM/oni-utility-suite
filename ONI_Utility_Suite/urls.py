@@ -29,7 +29,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("accounts.urls")),
     path("recipe-api/", include("recipe_api.urls")),
-    path("", include("templating_area.urls")),
     # OpenAPI schema
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     # Swagger UI

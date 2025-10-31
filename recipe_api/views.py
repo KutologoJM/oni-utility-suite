@@ -43,3 +43,21 @@ class RecipeShowcaseView(ListView):
     template_name = "recipe_api/recipe_showcase.html"
     context_object_name = "recipes"
     queryset = RecipeModel.objects.all()
+
+
+class RecipeDetailedView(DetailView):
+    model = RecipeModel
+    template_name = "recipe_api/detailed_recipe.html"
+    context_object_name = "recipe"
+    queryset = RecipeModel.objects.all()
+    lookup_field = "slug"
+    slug_url_kwarg = "slug"
+
+
+class Experimental(DetailView):
+    model = RecipeModel
+    template_name = "recipe_api/experimental.html"
+    context_object_name = "recipe"
+    queryset = RecipeModel.objects.all()
+    lookup_field = "slug"
+    slug_url_kwarg = "slug"

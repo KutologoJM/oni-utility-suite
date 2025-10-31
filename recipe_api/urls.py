@@ -16,4 +16,7 @@ urlpatterns = [
     path("", include(public_router.urls)),
     path("internal/", include(internal_router.urls)),
     path("showcase/", RecipeShowcaseView.as_view()),
+    path("showcase/<slug:slug>/", RecipeDetailedView.as_view()),
+    path("experimental/<slug:slug>/", Experimental.as_view()),
+
 ]

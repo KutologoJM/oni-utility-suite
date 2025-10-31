@@ -31,7 +31,7 @@ ENV/
 db.sqlite3
 media/
 staticfiles/
-static/css/tailwindcss.exe
+static/css/tailwindcss
 static/css/*.map
 static/css/*.min.css
 
@@ -70,13 +70,9 @@ Thumbs.db
 # -------------------
 do_not_commit
 do_not_commit.html
-START.bat
 
 # -------------------
 # Temporary
 # -------------------
-docs
 accounts/signals.py
 recipe_api/management
-testing_area
-templating_area
