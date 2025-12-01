@@ -1,13 +1,13 @@
 from django.contrib import admin
 from django.apps import apps
-
+from accounts.models import CustomUser, BaseProfile, CustomerProfile, ManagerProfile, AdminProfile
 # Register your models here.
 
 
 app = apps.get_app_config("accounts")
 
-for model_name, model in app.models.items():
-    try:
-        admin.site.register(model)
-    except admin.sites.AlreadyRegistered:  # noqa
-        pass
+admin.site.register(CustomUser)
+admin.site.register(BaseProfile)
+admin.site.register(CustomerProfile)
+admin.site.register(ManagerProfile)
+admin.site.register(AdminProfile)

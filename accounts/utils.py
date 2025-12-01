@@ -1,12 +1,12 @@
 from django.contrib.auth import get_user_model
-from accounts.models import *
+from accounts import models
 
 
 User = get_user_model()
 custom_profiles = {
-    "Customers": CustomerProfile,
-    "Managers": ManagerProfile,
-    "Admins": AdminProfile,
+    "Customers": models.CustomerProfile,
+    "Managers": models.ManagerProfile,
+    "Admins": models.AdminProfile,
 }
 
 

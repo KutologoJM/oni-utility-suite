@@ -1,13 +1,11 @@
-from rest_framework.serializers import *
-
-from accounts import serializers
-from .models import *
+from rest_framework import serializers
+from recipe_api import models
 
 
-class SourcesSerializer(ModelSerializer):
+class SourcesSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = SourcesModel
+        model = models.SourcesModel
         fields = [
             "source_name",
             "source_wiki_url",
@@ -15,7 +13,7 @@ class SourcesSerializer(ModelSerializer):
         ]
 
 
-class IngredientSourcesSerializer(ModelSerializer):
+class IngredientSourcesSerializer(serializers.ModelSerializer):
     creator = serializers.CharField(source="creator.username", read_only=True)
     ingredient = serializers.CharField(
         source="ingredients.ingredient_name", read_only=True
@@ -33,7 +31,7 @@ class IngredientSourcesSerializer(ModelSerializer):
     )
 
     class Meta:
-        model = IngredientSourcesModel
+        model = models.IngredientSourcesModel
         fields = [
             "creator",
             "ingredient",
@@ -43,12 +41,12 @@ class IngredientSourcesSerializer(ModelSerializer):
         ]
 
 
-class IngredientsSerializer(ModelSerializer):
+class IngredientsSerializer(serializers.ModelSerializer):
     creator = serializers.CharField(source="creator.username", read_only=True)
     sources = SourcesSerializer(many=True, read_only=True)
 
     class Meta:
-        model = IngredientsModel
+        model = models.IngredientsModel
         fields = [
             "creator",
             "ingredient_name",
@@ -63,7 +61,7 @@ class IngredientsSerializer(ModelSerializer):
         ]
 
 
-class RecipeIngredientsSerializer(ModelSerializer):
+class RecipeIngredientsSerializer(serializers.ModelSerializer):
     ingredients = IngredientsSerializer(read_only=True, many=True)
     ingredient_id = serializers.PrimaryKeyRelatedField(
         queryset=IngredientsModel.objects.all(),  # noqa
@@ -77,7 +75,7 @@ class RecipeIngredientsSerializer(ModelSerializer):
     creator = serializers.CharField(source="creator.username", read_only=True)
 
     class Meta:
-        model = RecipeIngredientsModel
+        model = models.RecipeIngredientsModel
         fields = [
             "recipe",
             "recipe_id",
@@ -89,7 +87,7 @@ class RecipeIngredientsSerializer(ModelSerializer):
         ]
 
 
-class RecipeSourcesSerializer(ModelSerializer):
+class RecipeSourcesSerializer(serializers.ModelSerializer):
     creator = serializers.CharField(source="creator.username", read_only=True)
     recipe = serializers.CharField(source="recipe.recipe_name", read_only=True)
     recipe_id = serializers.PrimaryKeyRelatedField(
@@ -103,12 +101,12 @@ class RecipeSourcesSerializer(ModelSerializer):
     )
 
     class Meta:
-        model = RecipeSourcesModel
+        model = models.RecipeSourcesModel
         fields = ["creator", "recipe", "recipe_id", "recipe_source", "recipe_source_id"]
         ordering = ["recipe_source", "recipe_source_id"]
 
 
-class RecipeSerializer(ModelSerializer):
+class RecipeSerializer(serializers.ModelSerializer):
     ingredients = RecipeIngredientsSerializer(
         source="recipeingredientsmodel_set", read_only=True, many=True  # noqa
     )
@@ -118,7 +116,7 @@ class RecipeSerializer(ModelSerializer):
     creator = serializers.CharField(source="creator.username", read_only=True)
 
     class Meta:
-        model = RecipeModel
+        model = models.RecipeModel
         fields = [
             "creator",
             "recipe_name",

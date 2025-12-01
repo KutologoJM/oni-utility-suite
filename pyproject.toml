@@ -3,7 +3,7 @@ name = "oni-utility-suite"
 version = "0.1.0"
 description = ""
 authors = [
-    {name = "KutologoJM",email = "KutologoJM@kutologo.bio"}
+    {name = "KutologoJM",email = "ous-poetry@jezrastudio.online"}
 ]
 readme = "README.md"
 requires-python = ">=3.12"
@@ -23,10 +23,13 @@ dependencies = [
     "django-filter (>=25.2,<26.0)",
     "psycopg2-binary (>=2.9.11,<3.0.0)",
     "dj-database-url (>=3.0.1,<4.0.0)",
+    "django-debug-toolbar (>=6.1.0,<7.0.0)",
 ]
 
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
 package-mode = false

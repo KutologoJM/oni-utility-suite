@@ -1,5 +1,5 @@
-from django.contrib.auth.models import AbstractUser, Group
-from django.db.models import *
+from django.contrib.auth.models import AbstractUser
+from django.db import models
 
 
 # Create your models here.
@@ -24,8 +24,8 @@ class CustomUser(AbstractUser):
         return f"{self.username} ({primary_group.name if primary_group else 'No Group'})"
 
 
-class BaseProfile(Model):
-    user = OneToOneField(CustomUser, on_delete=CASCADE)
+class BaseProfile(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
 
     class Meta:
         abstract = True
