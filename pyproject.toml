@@ -24,6 +24,7 @@ dependencies = [
     "psycopg2-binary (>=2.9.11,<3.0.0)",
     "dj-database-url (>=3.0.1,<4.0.0)",
     "django-debug-toolbar (>=6.1.0,<7.0.0)",
+    "aiosmtpd (>=1.4.6,<2.0.0)",
 ]
 
 

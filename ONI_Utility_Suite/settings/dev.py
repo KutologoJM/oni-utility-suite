@@ -14,10 +14,11 @@ INSTALLED_APPS += ["debug_toolbar"]
 MIDDLEWARE.insert(2, "debug_toolbar.middleware.DebugToolbarMiddleware")
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    "default": dj_database_url.config(
+        default=os.getenv("DATABASE_URL_DEV"),
+        conn_max_age=600,
+        ssl_require=True,
+    )
 }
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
