@@ -138,9 +138,8 @@ APPEND_SLASH = True
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # noqa
 STATICFILES_DIRS = [
-    BASE_DIR / "ONI_Utility_Suite/static",  # noqa
+    BASE_DIR / "static",  # noqa
 ]
-
 # Whitenoise config
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 

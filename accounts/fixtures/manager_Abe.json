@@ -1,12 +1,19 @@
 [
-  {
-    "model": "accounts.customuser",
-    "fields": {
-      "username": "manager_Abe",
-      "password": "!",
-      "is_active": true,
-      "is_staff": false,
-      "is_superuser": false
+    {
+        "model": "accounts.customuser",
+        "pk": 2,
+        "fields": {
+            "password": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "manager_Abe",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": false,
+            "is_active": true,
+            "groups": [],
+            "user_permissions": []
+        }
     }
-  }
 ]

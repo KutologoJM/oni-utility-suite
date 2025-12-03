@@ -19,7 +19,7 @@ class IngredientSourcesSerializer(serializers.ModelSerializer):
         source="ingredients.ingredient_name", read_only=True
     )
     ingredient_id = serializers.PrimaryKeyRelatedField(
-        queryset=IngredientsModel.objects.all(),  # noqa
+        queryset=models.IngredientsModel.objects.all(),  # noqa
         source="ingredients",
         write_only=True,
     )
@@ -27,7 +27,7 @@ class IngredientSourcesSerializer(serializers.ModelSerializer):
         source="source.source_name", read_only=True
     )
     ingredient_source_id = serializers.PrimaryKeyRelatedField(
-        queryset=SourcesModel.objects.all(), source="source", write_only=True  # noqa
+        queryset=models.SourcesModel.objects.all(), source="source", write_only=True  # noqa
     )
 
     class Meta:
@@ -64,13 +64,13 @@ class IngredientsSerializer(serializers.ModelSerializer):
 class RecipeIngredientsSerializer(serializers.ModelSerializer):
     ingredients = IngredientsSerializer(read_only=True, many=True)
     ingredient_id = serializers.PrimaryKeyRelatedField(
-        queryset=IngredientsModel.objects.all(),  # noqa
+        queryset=models.IngredientsModel.objects.all(),  # noqa
         source="ingredient",
         write_only=True,
     )
     recipe = serializers.CharField(source="recipe.recipe_name", read_only=True)
     recipe_id = serializers.PrimaryKeyRelatedField(
-        queryset=RecipeModel.objects.all(), source="recipe", write_only=True  # noqa
+        queryset=models.RecipeModel.objects.all(), source="recipe", write_only=True  # noqa
     )
     creator = serializers.CharField(source="creator.username", read_only=True)
 
@@ -91,13 +91,13 @@ class RecipeSourcesSerializer(serializers.ModelSerializer):
     creator = serializers.CharField(source="creator.username", read_only=True)
     recipe = serializers.CharField(source="recipe.recipe_name", read_only=True)
     recipe_id = serializers.PrimaryKeyRelatedField(
-        queryset=RecipeModel.objects.all(),  # noqa
+        queryset=models.RecipeModel.objects.all(),  # noqa
         source="recipe",
         write_only=True,
     )
     recipe_source = serializers.CharField(source="source.source_name", read_only=True)
     recipe_source_id = serializers.PrimaryKeyRelatedField(
-        queryset=SourcesModel.objects.all(), source="source", write_only=True  # noqa
+        queryset=models.SourcesModel.objects.all(), source="source", write_only=True  # noqa
     )
 
     class Meta:
