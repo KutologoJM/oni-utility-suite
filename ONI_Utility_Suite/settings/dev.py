@@ -9,9 +9,11 @@ INTERNAL_IPS = [
 ]
 
 
-INSTALLED_APPS += ["debug_toolbar"]
+INSTALLED_APPS += ["debug_toolbar", "django_browser_reload"]
 
 MIDDLEWARE.insert(2, "debug_toolbar.middleware.DebugToolbarMiddleware")
+MIDDLEWARE.insert(3, "django_browser_reload.middleware.BrowserReloadMiddleware")
+
 
 DATABASES = {
     "default": dj_database_url.config(

@@ -43,7 +43,7 @@ class IngredientsModel(models.Model):
         return self.ingredient_name
 
 
-class RecipeModel(models.Model):
+class RecipesModel(models.Model):
     creator = models.ForeignKey(
         User,
         on_delete=models.SET(get_fallback_user),
@@ -51,10 +51,10 @@ class RecipeModel(models.Model):
         default=get_default_manager,
     )
 
-    recipe_name = models.CharField(max_length=50, unique=True)
+    recipe_name = models.CharField(max_length = 50, unique = True)
     recipe_wiki_url = models.URLField(max_length=100, blank=True)
     recipe_image_url = models.URLField(max_length=100, blank=True)
-    recipe_description = models.TextField(null=True, max_length=200)
+    recipe_description = models.TextField(null=True, blank=True, max_length=200)
 
     dlc_name = models.CharField(max_length=50, null=True, blank=True)
     dlc_wiki_url = models.URLField(max_length=100, blank=True, null=True)
@@ -114,7 +114,7 @@ class RecipeIngredientsModel(models.Model):
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, blank=True, null=True)
     amount_required = models.CharField(max_length=50)
 
-    recipe = models.ForeignKey(RecipeModel, on_delete=models.CASCADE)
+    recipe = models.ForeignKey(RecipesModel, on_delete=models.CASCADE)
     ingredient = models.ForeignKey(IngredientsModel, on_delete=models.CASCADE)
 
     class Meta:
@@ -132,7 +132,7 @@ class RecipeSourcesModel(models.Model):
         related_name="recipe_source_relationship_owner",
         default=get_default_manager,
     )
-    recipe = models.ForeignKey(RecipeModel, on_delete=models.CASCADE)
+    recipe = models.ForeignKey(RecipesModel, on_delete=models.CASCADE)
     source = models.ForeignKey(SourcesModel, on_delete=models.CASCADE)
 
     class Meta:

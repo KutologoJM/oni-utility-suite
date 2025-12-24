@@ -1,3 +1,5 @@
+from django.http import HttpResponse
+from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 from . import models
 from . import serializers
@@ -14,7 +16,7 @@ class IngredientsViewSet(ModelViewSet):
 
 class RecipeViewSet(ModelViewSet):
     serializer_class = serializers.RecipeSerializer
-    queryset = models.RecipeModel.objects.all()
+    queryset = models.RecipesModel.objects.all()
     lookup_field = "slug"
 
 
@@ -39,25 +41,32 @@ class IngredientSourcesViewSet(ModelViewSet):
 
 
 class RecipeShowcaseView(ListView):
-    model = models.RecipeModel
+    model = models.RecipesModel
     template_name = "recipe_api/recipe_showcase.html"
     context_object_name = "recipes"
-    queryset = models.RecipeModel.objects.all()
+    queryset = models.RecipesModel.objects.all()
 
 
 class RecipeDetailedView(DetailView):
-    model = models.RecipeModel
+    model = models.RecipesModel
     template_name = "recipe_api/detailed_recipe.html"
     context_object_name = "recipe"
-    queryset = models.RecipeModel.objects.all()
+    queryset = models.RecipesModel.objects.all()
     lookup_field = "slug"
     slug_url_kwarg = "slug"
 
 
 class Experimental(DetailView):
-    model = models.RecipeModel
+    model = models.RecipesModel
     template_name = "recipe_api/experimental.html"
     context_object_name = "recipe"
-    queryset = models.RecipeModel.objects.all()
+    queryset = models.RecipesModel.objects.all()
     lookup_field = "slug"
     slug_url_kwarg = "slug"
+
+def workshop_template_view(request):
+    template_name = request.GET.get("template_name")
+    if template_name:
+        return render(request, template_name=f"recipe_api/{template_name}.html")
+    return HttpResponse("No template found")
+

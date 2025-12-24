@@ -70,7 +70,7 @@ class RecipeIngredientsSerializer(serializers.ModelSerializer):
     )
     recipe = serializers.CharField(source="recipe.recipe_name", read_only=True)
     recipe_id = serializers.PrimaryKeyRelatedField(
-        queryset=models.RecipeModel.objects.all(), source="recipe", write_only=True  # noqa
+        queryset=models.RecipesModel.objects.all(), source="recipe", write_only=True  # noqa
     )
     creator = serializers.CharField(source="creator.username", read_only=True)
 
@@ -91,7 +91,7 @@ class RecipeSourcesSerializer(serializers.ModelSerializer):
     creator = serializers.CharField(source="creator.username", read_only=True)
     recipe = serializers.CharField(source="recipe.recipe_name", read_only=True)
     recipe_id = serializers.PrimaryKeyRelatedField(
-        queryset=models.RecipeModel.objects.all(),  # noqa
+        queryset=models.RecipesModel.objects.all(),  # noqa
         source="recipe",
         write_only=True,
     )
@@ -116,7 +116,7 @@ class RecipeSerializer(serializers.ModelSerializer):
     creator = serializers.CharField(source="creator.username", read_only=True)
 
     class Meta:
-        model = models.RecipeModel
+        model = models.RecipesModel
         fields = [
             "creator",
             "recipe_name",

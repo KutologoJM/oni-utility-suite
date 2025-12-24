@@ -25,6 +25,9 @@ dependencies = [
     "dj-database-url (>=3.0.1,<4.0.0)",
     "django-debug-toolbar (>=6.1.0,<7.0.0)",
     "aiosmtpd (>=1.4.6,<2.0.0)",
+    "djangorestframework-stubs (>=3.16.6,<4.0.0)",
+    "django-browser-reload (>=1.21.0,<2.0.0)",
+    "django-watchfiles (>=1.4.0,<2.0.0)",
 ]
 
 
