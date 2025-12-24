@@ -1,7 +1,7 @@
-# To be populated
+# DEPRECATED
 
-Run npm install
+This repository is no longer maintained and its concept will be continued in:
 
-poetry install
+[UtilitiesNotIncluded](https://github.com/KutologoJM/utilities-not-included)
 
-create .env from example env
+Feel free to check it out and leave some feedback.
